@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tottenham Hotspur — Fanpage (Mockup)</title>
+  <meta name="description" content="Fanpage mockup Tottenham — To Dare Is To Do. Lịch sử, danh hiệu, Hall of Fame, đội hình Hoàng Kim & 2023 trên cùng một sân, shop."/>
+  <style>
+    :root{
+      --navy:#071b3a;
+      --navy-2:#08203f;
+      --accent:#ffd24a;
+      --teal:#0fb5a3;
+      --card:#ffffff;
+      --muted:#a9c0d9;
+      --glass: rgba(255,255,255,0.04);
+      --pitch-green:#0b6b3a;
+      font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#041428 0%, #081a34 60%); color:var(--card); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    .container{max-width:1200px;margin:20px auto;padding:18px;display:grid;grid-template-columns:1fr 360px;gap:18px;}
+
+    /* Header */
+    header{grid-column:1/-1;display:flex;align-items:center;gap:16px;padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:72px;height:72px;object-fit:contain;border-radius:10px;background:var(--glass);padding:6px}
+    .brand h1{margin:0;font-size:20px;color:var(--accent);letter-spacing:0.6px}
+    nav{margin-left:auto;display:flex;gap:8px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:700}
+    nav a:hover{background:rgba(255,255,255,0.02);color:var(--card)}
+
+    /* Main cards */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 30px rgba(0,0,0,0.55)}
+    h2{margin:0 0 8px 0}
+    p.small{color:var(--muted);margin:0 0 10px 0}
+
+    /* About / honors */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* Hall of fame */
+    .hall{display:flex;gap:10px;flex-wrap:wrap}
+    .legend{width:calc(50% - 6px);display:flex;gap:10px;align-items:center;background:rgba(255,255,255,0.02);padding:8px;border-radius:10px}
+    .legend img{width:60px;height:60px;object-fit:cover;border-radius:8px}
+
+    /* Players gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+    .player-tile{background:rgba(255,255,255,0.04);border-radius:10px;padding:8px;text-align:center;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+    .player-thumb{width:84px;height:84px;border-radius:999px;overflow:hidden;margin:0 auto 8px;border:3px solid rgba(255,255,255,0.06)}
+    .player-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .player-name{font-weight:800;color:var(--teal);font-size:14px}
+    .player-meta{font-size:12px;color:var(--muted)}
+
+    /* Pitch: both teams on same field */
+    .pitch-wrap{margin-top:12px}
+    .pitch{position:relative;height:520px;border-radius:12px;background:linear-gradient(180deg,#0e8b4f,#0b6b3a);border:6px solid rgba(255,255,255,0.03);box-shadow:inset 0 120px 140px rgba(0,0,0,0.25)}
+    .pitch .center-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.06)}
+    .side{position:absolute;top:14px;bottom:14px;width:48%;display:flex;flex-direction:column;justify-content:center}
+    .side.left{left:1%}
+    .side.right{right:1%}
+    .col{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+    .col.right{align-items:flex-end}
+    .squad-card{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,0.96);color:#052036;border-radius:10px;padding:8px;width:220px;box-shadow:0 8px 24px rgba(0,0,0,0.35);cursor:pointer}
+    .squad-thumb{width:48px;height:48px;border-radius:999px;overflow:hidden;border:2px solid rgba(2,6,23,0.06)}
+    .squad-thumb img{width:100%;height:100%;object-fit:cover}
+    .squad-info strong{display:block;font-size:13px}
+    .squad-info small{color:#3c5b70;font-size:12px}
+
+    /* Sidebar */
+    aside{display:flex;flex-direction:column;gap:12px}
+    .shop-item{display:flex;gap:10px;align-items:center;border-radius:10px;padding:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .shop-item img{width:72px;height:72px;object-fit:cover;border-radius:8px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:900;text-decoration:none;color:#07203a;background:var(--accent);box-shadow:0 10px 18px rgba(255,210,70,0.12)}
+
+    /* modal */
+    .modal{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.7);align-items:center;justify-content:center;z-index:9999}
+    .modal.active{display:flex}
+    .modal-card{background:#fff;color:#062034;border-radius:12px;padding:16px;max-width:520px;width:92%;display:flex;gap:12px;align-items:flex-start}
+    .modal-card img{width:120px;height:120px;object-fit:cover;border-radius:8px}
+    .modal-card .info strong{display:block;font-size:18px;color:var(--navy)}
+    .close-btn{margin-left:auto;background:transparent;border:none;font-size:20px;cursor:pointer;color:#063046}
+
+    /* responsive */
+    @media(max-width:1000px){
+      .container{grid-template-columns:1fr; padding:12px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .squad-card{width:180px}
+      .modal-card{flex-direction:column;align-items:center;text-align:center}
+    }
+    @media(max-width:560px){
+      .gallery{grid-template-columns:1fr}
+      .squad-card{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Tottenham_Hotspur.svg/1200px-Tottenham_Hotspur.svg.png" alt="Tottenham logo" />
+        <div>
+          <h1>Tottenham Hotspur</h1>
+          <div style="font-weight:700;color:var(--muted);font-size:13px">To Dare Is To Do — Official Fanpage Mock</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">Giới thiệu</a>
+        <a href="#team">Đội</a>
+        <a href="#formations">Sơ đồ</a>
+        <a href="#shop">Shop</a>
+      </nav>
+    </header>
+
+    <!-- MAIN LEFT -->
+    <main>
+      <!-- About & honours -->
+      <section id="about" class="card">
+        <h2>Về Tottenham Hotspur</h2>
+        <p class="small"><strong>To Dare Is To Do.</strong> Được thành lập năm 1882, Tottenham Hotspur là một trong những CLB đầy truyền thống của Bắc London. Spurs nổi bật với lối chơi tấn công đẹp mắt, triết lý phát triển cầu thủ và niềm tự hào cộng đồng người hâm mộ toàn cầu.</p>
+
+        <div class="two-col" style="margin-top:12px">
+          <div class="card" style="padding:12px;">
+            <h3>Danh hiệu tiêu biểu</h3>
+            <ul style="color:var(--muted);margin-top:8px">
+              <li>FA Cup — 8 lần</li>
+              <li>League Cup — 4 lần</li>
+              <li>UEFA Cup / Europa League — 2 lần</li>
+              <li>Community Shield — nhiều lần</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:12px">
+            <h3>Tinh thần CLB</h3>
+            <p class="small">Spurs cam kết phát triển bóng đá tấn công, tôn vinh tài năng trẻ và tiếp nối truyền thống \"đấu tới cùng\" cho người hâm mộ trên toàn thế giới.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hall of fame -->
+      <section class="card" style="margin-top:12px">
+        <h2>Ngôi Đền Huyền Thoại — Hall of Fame (Spirit of Spurs)</h2>
+        <p class="small">Những con người đã viết nên lịch sử Spurs — hình ảnh, đóng góp và di sản.</p>
+        <div class="hall" style="margin-top:10px">
+          <div class="legend">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jimmy_Greaves_1970.jpg" alt="Jimmy Greaves">
+            <div>
+              <strong>Jimmy Greaves</strong>
+              <div style="color:var(--muted);font-size:13px">Vua phá lưới • #9</div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Glenn_Hoddle_1982.jpg" alt="Glenn Hoddle">
+            <div>
+              <strong>Glenn Hoddle</strong>
+              <div style="color:var(--muted);font-size:13px">Kiến tạo • Sáng tạo</div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Ledley_King_2008.jpg" alt="Ledley King">
+            <div>
+              <strong>Ledley King</strong>
+              <div style="color:var(--muted);font-size:13px">Biểu tượng hàng thủ</div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Danny_Blanchflower_1961.jpg" alt="Danny Blanchflower">
+            <div>
+              <strong>Danny Blanchflower</strong>
+              <div style="color:var(--muted);font-size:13px">Trí tuệ & lãnh đạo</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Players gallery -->
+      <section id="team" class="card" style="margin-top:12px">
+        <h2>Đội hình tiêu biểu & ngôi sao</h2>
+        <p class="small">Spotlight: Những cầu thủ định hình phong cách Spurs — click vào để xem chi tiết.</p>
+        <div class="gallery" style="margin-top:12px">
+          <!-- Son -->
+          <div class="player-tile" data-player="son">
+            <div class="player-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Son_Heung-min_2023.jpg" alt="Son Heung-min"></div>
+            <div class="player-name">Son Heung-min</div>
+            <div class="player-meta">#7 · LW/CF · KOR</div>
+          </div>
+          <!-- Kane -->
+          <div class="player-tile" data-player="kane">
+            <div class="player-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Harry_Kane_2019.jpg" alt="Harry Kane"></div>
+            <div class="player-name">Harry Kane</div>
+            <div class="player-meta">#10 · ST · ENG</div>
+          </div>
+          <!-- Romero -->
+          <div class="player-tile" data-player="romero">
+            <div class="player-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Cristian_Romero_2022.jpg" alt="Cristian Romero"></div>
+            <div class="player-name">Cristian Romero</div>
+            <div class="player-meta">#4 · CB · ARG</div>
+          </div>
+          <!-- Vicario -->
+          <div class="player-tile" data-player="vicario">
+            <div class="player-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Vicario_2023.jpg" alt="Guglielmo Vicario"></div>
+            <div class="player-name">Guglielmo Vicario</div>
+            <div class="player-meta">#1 · GK · ITA</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pitch & formations (both teams on same field) -->
+      <section id="formations" class="card pitch-wrap" style="margin-top:12px;padding:12px;">
+        <h2>Sơ đồ: Hoàng Kim vs Đội 2023 — Trận đấu giả lập</h2>
+        <p class="small">Hai đội cổ điển & hiện đại đặt trên cùng một sân để so sánh chiến thuật. Nhấp vào thẻ cầu thủ để xem thông tin chi tiết.</p>
+
+        <div class="pitch" aria-label="Pitch with two formations" style="margin-top:12px">
+          <div class="center-line"></div>
+
+          <!-- LEFT: Golden Era (Hoàng Kim) -->
+          <div class="side left" aria-hidden="false">
+            <div class="col" style="align-items:flex-start; margin-left:14px;">
+              <!-- Example lineup of 5 cards (you can expand to 11) -->
+              <div class="squad-card" data-player="jimmy_greaves" title="Jimmy Greaves">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Jimmy_Greaves_1970.jpg" alt="Jimmy Greaves"></div>
+                <div class="squad-info">
+                  <strong>Jimmy Greaves</strong>
+                  <small>ST · #9 · ENG</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="glenn_hoddle" title="Glenn Hoddle">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Glenn_Hoddle_1982.jpg" alt="Glenn Hoddle"></div>
+                <div class="squad-info">
+                  <strong>Glenn Hoddle</strong>
+                  <small>AM · #10 · ENG</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="ledley_king" title="Ledley King">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Ledley_King_2008.jpg" alt="Ledley King"></div>
+                <div class="squad-info">
+                  <strong>Ledley King</strong>
+                  <small>CB · #5 · ENG</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="danny_blanchflower" title="Danny Blanchflower">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Danny_Blanchflower_1961.jpg" alt="Danny Blanchflower"></div>
+                <div class="squad-info">
+                  <strong>Danny Blanchflower</strong>
+                  <small>CM · #4 · NIR</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="burridge" title="Jimmy Burridge (example)">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Alan_Bradley_example.jpg" alt="Legend"></div>
+                <div class="squad-info">
+                  <strong>Clássic Legend</strong>
+                  <small>Icon • #—</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Current 2023 -->
+          <div class="side right" aria-hidden="false">
+            <div class="col right" style="align-items:flex-end; margin-right:14px;">
+              <div class="squad-card" data-player="vicario" title="G. Vicario" style="flex-direction:row-reverse">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Vicario_2023.jpg" alt="Vicario"></div>
+                <div class="squad-info">
+                  <strong>G. Vicario</strong>
+                  <small>GK · #1 · ITA</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="porro" title="Pedro Porro" style="flex-direction:row-reverse">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Pedro_Porro_2022.jpg" alt="Pedro Porro"></div>
+                <div class="squad-info">
+                  <strong>Pedro Porro</strong>
+                  <small>RB · #2 · ESP</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="romero" title="Cristian Romero" style="flex-direction:row-reverse">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Cristian_Romero_2022.jpg" alt="Romero"></div>
+                <div class="squad-info">
+                  <strong>C. Romero</strong>
+                  <small>CB · #4 · ARG</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="son" title="Son Heung-min" style="flex-direction:row-reverse">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Son_Heung-min_2023.jpg" alt="Son Heung-min"></div>
+                <div class="squad-info">
+                  <strong>Son Heung-min</strong>
+                  <small>LW · #7 · KOR</small>
+                </div>
+              </div>
+
+              <div class="squad-card" data-player="kane" title="Harry Kane" style="flex-direction:row-reverse">
+                <div class="squad-thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Harry_Kane_2019.jpg" alt="Harry Kane"></div>
+                <div class="squad-info">
+                  <strong>Harry Kane</strong>
+                  <small>ST · #10 · ENG</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Coach + CTA -->
+      <section class="card" style="margin-top:12px;display:flex;gap:12px;align-items:center;justify-content:space-between">
+        <div>
+          <h3>Huấn luyện viên xuất sắc</h3>
+          <p class="small">Huấn luyện viên hàng đầu — chiến lược gia mang phong cách tấn công, biết khai thác tốc độ hai cánh và phát triển tài năng trẻ.</p>
+        </div>
+        <div>
+          <a class="btn" href="#formations">Xem trận giả lập</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- SIDEBAR RIGHT -->
+    <aside>
+      <div class="card">
+        <h3 id="shop">Cửa Hàng Chính Thức</h3>
+        <p class="small">Sản phẩm chính hãng — áo đấu, phụ kiện, quà lưu niệm.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+          <div class="shop-item">
+            <img src="https://via.placeholder.com/300x300?text=Home+Shirt" alt="home shirt">
+            <div>
+              <strong style="color:var(--teal)">Áo Đấu Chính Thức 23/24</strong>
+              <div style="color:var(--muted);font-size:13px">£69.99 — Fans: <strong style="color:var(--accent)">12,345</strong></div>
+            </div>
+          </div>
+
+          <div class="shop-item">
+            <img src="https://via.placeholder.com/300x300?text=Scarf" alt="scarf">
+            <div>
+              <strong style="color:var(--teal)">Khăn & Phụ Kiện</strong>
+              <div style="color:var(--muted);font-size:13px">From £14.99 — Fans: <strong style="color:var(--accent)">9,421</strong></div>
+            </div>
+          </div>
+
+          <a class="btn" href="#shop" style="text-align:center">Ghé shop</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Thống kê Fan</h3>
+        <div style="margin-top:10px;color:var(--muted)">
+          <div>Page followers: <strong style="color:var(--accent)">1,234,567</strong></div>
+          <div>Matchday subscribers: <strong style="color:var(--accent)">342,001</strong></div>
+          <div>Shop followers: <strong style="color:var(--accent)">98,345</strong></div>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;gap:10px;align-items:center">
+        <img src="https://via.placeholder.com/100" alt="manager" style="width:80px;height:80px;object-fit:cover;border-radius:10px">
+        <div>
+          <strong>Top Manager</strong>
+          <div style="color:var(--muted);font-size:13px">Chiến lược gia tấn công — sở trường pressing & phát triển trẻ.</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer style="grid-column:1/-1;text-align:center;color:var(--muted);margin-top:8px;font-size:13px">
+      <div class="card" style="padding:12px;background:transparent;border:none;box-shadow:none">
+        Fanpage mockup — thay ảnh bằng ảnh chính thức có bản quyền để chính thức hóa trang.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal for player info -->
+  <div id="playerModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="playerName">
+    <div class="modal-card" role="document">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <img id="modalImg" src="" alt="player image">
+      </div>
+      <div class="info">
+        <button class="close-btn" onclick="closeModal()" aria-label="close">&times;</button>
+        <strong id="playerName">Name</strong>
+        <div id="playerMeta" style="color:#2b5f74;margin:6px 0;font-weight:700"></div>
+        <p id="playerBio" style="color:#425b6e;margin-top:8px"></p>
+        <div style="margin-top:10px;color:#6c8da5;font-size:13px">Nguồn: Tottenham Hotspur — fanpage style (mockup)</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Player data (you can expand with full fields)
+    const PLAYERS = {
+      son: {
+        id: 'son',
+        name: 'Son Heung-min',
+        number: 7,
+        position: 'LW / CF',
+        nation: 'KOR',
+        dob: '08/07/1992',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Son_Heung-min_2023.jpg',
+        bio: 'Son Heung-min — biểu tượng Spurs: tốc độ, nhãn quan, và phẩm chất lãnh đạo trên sân. Luôn tận hiến cho CLB và người hâm mộ.'
+      },
+      kane: {
+        id: 'kane',
+        name: 'Harry Kane',
+        number: 10,
+        position: 'ST',
+        nation: 'ENG',
+        dob: '28/07/1993',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Harry_Kane_2019.jpg',
+        bio: 'Harry Kane — trung phong toàn diện: ghi bàn, kiến tạo và là hình mẫu chuyên nghiệp. Một trong những tiền đạo xuất sắc của thế hệ.'
+      },
+      romero: {
+        id: 'romero',
+        name: 'Cristian Romero',
+        number: 4,
+        position: 'CB',
+        nation: 'ARG',
+        dob: '27/04/1998',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Cristian_Romero_2022.jpg',
+        bio: 'Cristian Romero — trung vệ mạnh mẽ, đọc trận đấu tốt và tạo nền tảng cho hàng thủ Spurs.'
+      },
+      vicario: {
+        id: 'vicario',
+        name: 'Guglielmo Vicario',
+        number: 1,
+        position: 'GK',
+        nation: 'ITA',
+        dob: '07/12/1996',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Vicario_2023.jpg',
+        bio: 'Guglielmo Vicario — người gác đền đáng tin cậy, phản xạ tốt và khả năng chơi chân ấn tượng.'
+      },
+      jimmy_greaves: {
+        id: 'jimmy_greaves',
+        name: 'Jimmy Greaves',
+        number: 9,
+        position: 'ST',
+        nation: 'ENG',
+        dob: '20/02/1940',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Jimmy_Greaves_1970.jpg',
+        bio: 'Jimmy Greaves — một trong những chân sút vĩ đại nhất trong lịch sử CLB.'
+      },
+      glenn_hoddle: {
+        id: 'glenn_hoddle',
+        name: 'Glenn Hoddle',
+        number: 10,
+        position: 'AM',
+        nation: 'ENG',
+        dob: '27/10/1957',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/2/2d/Glenn_Hoddle_1982.jpg',
+        bio: 'Glenn Hoddle — nghệ sĩ sân cỏ, cả khi còn là cầu thủ và khi làm HLV, đóng góp lớn cho CLB.'
+      },
+      ledley_king: {
+        id: 'ledley_king',
+        name: 'Ledley King',
+        number: 5,
+        position: 'CB',
+        nation: 'ENG',
+        dob: '12/10/1980',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Ledley_King_2008.jpg',
+        bio: 'Ledley King — biểu tượng trung vệ, người hâm mộ Spurs mãi nhớ.'
+      },
+      danny_blanchflower: {
+        id: 'danny_blanchflower',
+        name: 'Danny Blanchflower',
+        number: 4,
+        position: 'CM',
+        nation: 'NIR',
+        dob: '10/02/1926',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Danny_Blanchflower_1961.jpg',
+        bio: 'Danny Blanchflower — nhà lãnh đạo, đại diện cho tinh thần và trí tuệ Spurs.'
+      },
+      porro: {
+        id: 'porro',
+        name: 'Pedro Porro',
+        number: 2,
+        position: 'RB',
+        nation: 'ESP',
+        dob: '13/10/1999',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Pedro_Porro_2022.jpg',
+        bio: 'Pedro Porro — hậu vệ phải tấn công, góp phần nâng cao sức mạnh cánh phải.'
+      },
+      burridge: {
+        id: 'burridge',
+        name: 'Classic Legend',
+        number: '-',
+        position: 'Icon',
+        nation: '-',
+        dob: '-',
+        img: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Alan_Bradley_example.jpg',
+        bio: 'Biểu tượng cổ điển (ví dụ) — thay bằng huyền thoại bạn muốn.'
+      }
+    };
+
+    // Open modal with data
+    function openPlayerModal(id){
+      const p = PLAYERS[id];
+      if(!p) return;
+      document.getElementById('modalImg').src = p.img;
+      document.getElementById('playerName').innerText = p.name;
+      document.getElementById('playerMeta').innerText = `#${p.number} · ${p.position} · ${p.nation} · ${p.dob}`;
+      document.getElementById('playerBio').innerText = p.bio;
+      document.getElementById('playerModal').classList.add('active');
+    }
+    function closeModal(){ document.getElementById('playerModal').classList.remove('active'); }
+
+    // Attach click handlers for gallery tiles and pitch cards
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // gallery tiles
+      document.querySelectorAll('.player-tile').forEach(tile=>{
+        tile.addEventListener('click', ()=> {
+          const id = tile.getAttribute('data-player');
+          openPlayerModal(id);
+        });
+      });
+      // pitch squad cards
+      document.querySelectorAll('.squad-card').forEach(card=>{
+        card.addEventListener('click', ()=> {
+          const id = card.getAttribute('data-player');
+          openPlayerModal(id);
+        });
+      });
+      // close modal on background click
+      document.getElementById('playerModal').addEventListener('click', (e)=>{
+        if(e.target.id === 'playerModal') closeModal();
+      });
+      // keyboard escape
+      document.addEventListener('keyup', (e)=>{ if(e.key === 'Escape') closeModal(); });
+    });
+  </script>
+</body>
+</html>
